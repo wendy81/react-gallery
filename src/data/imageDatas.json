@@ -1,35 +1,63 @@
 [
 	{
-		"fileName":"001.jpeg",
-		"title":"001.jpeg",
-		"desc":"001.jpeg"
+		"fileName":"1.jpg",
+		"title":"1",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	},	{
-		"fileName":"002.jpeg",
-		"title":"002.jpeg",
-		"desc":"002.jpeg"
+		"fileName":"2.jpg",
+		"title":"2",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	},	{
-		"fileName":"003.jpeg",
-		"title":"003.jpeg",
-		"desc":"003.jpeg"
+		"fileName":"3.jpg",
+		"title":"3",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	},	{
-		"fileName":"004.jpeg",
-		"title":"004.jpeg",
-		"desc":"004.jpeg"
+		"fileName":"4.jpg",
+		"title":"4",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	},	{
-		"fileName":"005.jpeg",
-		"title":"005.jpeg",
-		"desc":"005.jpeg"
+		"fileName":"5.jpg",
+		"title":"5",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	},	{
-		"fileName":"006.jpeg",
-		"title":"006.jpeg",
-		"desc":"006.jpeg"
+		"fileName":"6.jpg",
+		"title":"6",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	},	{
-		"fileName":"007.jpeg",
-		"title":"007.jpeg",
-		"desc":"007.jpeg"
+		"fileName":"7.jpg",
+		"title":"7",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	},	{
-		"fileName":"008.jpeg",
-		"title":"008.jpeg",
-		"desc":"008.jpeg"
+		"fileName":"8.jpg",
+		"title":"8",
+		"desc":"the class name to be toggled can be determined by passing in a function."
+	},	{
+		"fileName":"9.jpg",
+		"title":"9",
+		"desc":"the class name to be toggled can be determined by passing in a function."
+	},	{
+		"fileName":"10.jpg",
+		"title":"10",
+		"desc":"the class name to be toggled can be determined by passing in a function."
+	},	{
+		"fileName":"11.jpg",
+		"title":"11",
+		"desc":"the class name to be toggled can be determined by passing in a function."
+	},	{
+		"fileName":"12.jpg",
+		"title":"12",
+		"desc":"the class name to be toggled can be determined by passing in a function."
+	},	{
+		"fileName":"13.jpg",
+		"title":"13",
+		"desc":"the class name to be toggled can be determined by passing in a function."
+	},	{
+		"fileName":"14.jpg",
+		"title":"14",
+		"desc":"the class name to be toggled can be determined by passing in a function."
+	},	{
+		"fileName":"15.jpg",
+		"title":"15",
+		"desc":"the class name to be toggled can be determined by passing in a function."
 	}
 ]

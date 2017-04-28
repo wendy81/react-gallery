@@ -16,7 +16,6 @@ html, body {
 }
 
 
-
 /* stage */
 
 .stage {
@@ -31,13 +30,76 @@ html, body {
  height: 100%;
  overflow: hidden;
  background-color: #ddd;
+ @at-root {
+  .img-figure {
+    position:absolute;
+    width:180px;
+    height:200px;
+    margin:0;
+    padding:20px;
+    box-sizeing:border-box;
+    background-color:#fff;
+    img {
+      width:180px;
+      height:180px;
+    }
+    p {
+    position:absolute;
+    left:0;
+    top:-16px;
+    width:220px;
+    height:240px;
+    background:#fff;
+    color:#666;
+    box-sizing:border-box;
+    line-height:20px;
+    padding:10px;
+    display:none;
+    -webkit-transform:rotateY(180deg);
+    transform:rotateY(180deg);    
+    }
+  }
+  .img-transform {
+      -webkit-transform:rotateY(180deg);
+      transform:rotateY(180deg);
+  }
+  figcaption {
+    text-align:center;
+    .img-title {
+      margin:10px 0 0 0;
+      color:#a7a0a2;
+      font-size:16px;
+    }
+  }
+ }
 }
 
 .controller-nav {
   position: absolute;
-  left:0;
-  bottom:30px;
+  left:50%;
+  transform:translate(-50%);
+  bottom:100px;
   z-index: 101;
-  width: 100%;
   text-align: center;
+  ul {
+    list-style:none;
+    padding:0;
+    li {
+      float:left;
+      width:24px;
+      height:24px;
+      background:#999;
+      border:#eee 1px solid;
+      border-radius:50%;
+      box-sizing:border-box;
+      margin:4px;
+    }
+    li.active {
+      background:#f60;
+      /*-webkit-transition: all 0s ease-in-out 0.5s;
+      transition: all 0s ease-in-out 0.5s;*/
+    }
+  }
 }
+
+
