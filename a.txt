@@ -3,6 +3,4 @@ text2
 text3
 textdev
 
---no-ff
-
---dev1
+--delete branch
