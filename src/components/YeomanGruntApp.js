@@ -106,6 +106,8 @@ Constant: {
 		//中间图片的位置信息,把imgArrangeArr中的图片删除做为中间图片使用
 		let imgArrangeCenterArr = imgArrangeArr.splice(centerIndex, 1);
 		imgArrangeCenterArr[0].pos = centerPos;
+		//console.log(imgArrangeCenterArr[0]);
+		//console.log(imgArrangeArr.splice(centerIndex, 1));
 
 		//上侧图片,把imgArrangeArr中的图片删除做为上侧图片使用
 		topImgSpliceIndex = Math.ceil(Math.random() * (imgArrangeArr.length - topImgNum));
@@ -141,7 +143,9 @@ Constant: {
 			imgArrangeArr.splice(topImgSpliceIndex, 0, imgArrangeTopArr[0]);
 		}
 		//把删除的中间图片的位置添加到imgArrangeArr数组中
-		imgArrangeArr.splice(centerIndex, 0, imgArrangeCenterArr[0]);
+		if(imgArrangeCenterArr && imgArrangeCenterArr[0]) {
+			imgArrangeArr.splice(centerIndex, 0, imgArrangeCenterArr[0]);
+		}
 
 		this.setState({  //改变imgArrangeArr的值,原来的默认值为 this.state.imgArrangeArr = [{pos:[left:0,top:0]}]
 			imgArrangeArr: imgArrangeArr
