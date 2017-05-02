@@ -19,38 +19,35 @@ var styleObj = {};
 }
 var ImgTag = React.createClass({
 	changeCenIndex: function(e) {
-		e.preventDefault();
-		if(!$(e.currentTarget).hasClass('centerImg') ) {
+		if(!this.props.arrange.isCenter) {
 			this.props.rearrangeFun(this.props.index);
+			$(e.currentTarget).siblings().removeClass('img-transform');
 		} else {
-			let that = this;
 			$(e.currentTarget).toggleClass('img-transform');
-			if($(e.currentTarget).hasClass('img-transform')) {
-				setTimeout(function(){
-					let pdom = React.findDOMNode(that.refs.pdom);
-					$(pdom).slideDown(500);
-				}, 1000);
-			} else {
-				setTimeout(function(){
-					let pdom = React.findDOMNode(that.refs.pdom);
-					$(pdom).slideUp(500);
-				}, 1000);
-			}
 		}
+		e.preventDefault();
+		e.stopPropagation();
 	},
 	render: function() {
 		//定义this.props.arrange.pos即为当前<figure>的位置坐标
 		if(this.props.arrange.pos) {
 			styleObj = this.props.arrange.pos;
-			styleObj.WebkitTransition = 'all 1s ease-in-out 0.2s';
-			styleObj.transition = 'all 1s ease-in-out 0.2s';
 		}
+
+		// let arrangeArr = this.props;
+
+		// if(arrangeArr.arrange.isCenter) {
+		// 	console.log(arrangeArr.title);
+		// }
+		// console.log(arrangeArr);
 		return (
-			<figure key={this.props.index} className="img-figure" style={styleObj} onClick={this.changeCenIndex}>
-				<p ref='pdom'>{this.props.desc}</p>
+			<figure key={this.props.title} className="img-figure" style={styleObj} onClick={this.changeCenIndex}>
 				<img src={this.props.value} />
 				<figcaption>
 					<h2 className="img-title">{this.props.title}</h2>
+					<div className = 'img-back'>
+							{this.props.desc}
+					</div>
 				</figcaption>
 			</figure>
 		);
@@ -64,10 +61,10 @@ getInitialState: function() {
 			pos: {
 				// left: '0',
 				// top: '0'
-			}
+			},
+			isCenter: false
 		}
-	],
-	centerImg: 2
+	]
     };
 },
 Constant: {
@@ -104,10 +101,15 @@ Constant: {
 		let topImgSpliceIndex = 0;  //上侧图片是用
 
 		//中间图片的位置信息,把imgArrangeArr中的图片删除做为中间图片使用
+		console.log(centerIndex);
 		let imgArrangeCenterArr = imgArrangeArr.splice(centerIndex, 1);
-		imgArrangeCenterArr[0].pos = centerPos;
-		//console.log(imgArrangeCenterArr[0]);
-		//console.log(imgArrangeArr.splice(centerIndex, 1));
+		imgArrangeCenterArr[0] = {
+			pos: centerPos,
+			isCenter: true
+		};
+		// if(imgArrangeArr[centerIndex].isCenter) {
+			console.log(imgArrangeCenterArr[0]);
+		// }
 
 		//上侧图片,把imgArrangeArr中的图片删除做为上侧图片使用
 		topImgSpliceIndex = Math.ceil(Math.random() * (imgArrangeArr.length - topImgNum));
@@ -116,9 +118,12 @@ Constant: {
 
 		//布局上侧图片
 		imgArrangeTopArr.forEach(function(v, i){
-			imgArrangeTopArr[i].pos = {
-				left: random(vPosRangex0, vPosRangex1),
-				top: random(vPosRangetopY0, vPosRangetopY1)
+			imgArrangeTopArr[i] = {
+				pos: {
+					left: random(vPosRangex0, vPosRangex1),
+					top: random(vPosRangetopY0, vPosRangetopY1)
+				},
+				isCenter: false
 			};
 		});
 
@@ -131,10 +136,12 @@ Constant: {
 			} else {
 				hPosRangeLorR = hPosRangerightSecX;
 			}
-
-			imgArrangeArr[i].pos = {
-				left: random(hPosRangeLorR[0], hPosRangeLorR[1]),
-				top: random(hPosRange0, hPosRange1)
+			imgArrangeArr[i] = {
+				pos: {
+					left: random(hPosRangeLorR[0], hPosRangeLorR[1]),
+					top: random(hPosRange0, hPosRange1)
+				},
+				isCenter: false
 			};
 		}
 
@@ -143,9 +150,7 @@ Constant: {
 			imgArrangeArr.splice(topImgSpliceIndex, 0, imgArrangeTopArr[0]);
 		}
 		//把删除的中间图片的位置添加到imgArrangeArr数组中
-		if(imgArrangeCenterArr && imgArrangeCenterArr[0]) {
-			imgArrangeArr.splice(centerIndex, 0, imgArrangeCenterArr[0]);
-		}
+		imgArrangeArr.splice(centerIndex, 0, imgArrangeCenterArr[0]);
 
 		this.setState({  //改变imgArrangeArr的值,原来的默认值为 this.state.imgArrangeArr = [{pos:[left:0,top:0]}]
 			imgArrangeArr: imgArrangeArr
@@ -153,9 +158,6 @@ Constant: {
 		//Li点击传入中间图index,给当前li增加class='active'
 		let curLi = React.findDOMNode(this.refs.refUl);
 		$(curLi).find('li').eq(centerIndex).addClass('active').siblings().removeClass('active');
-		$('img').parent().eq(centerIndex).addClass('centerImg').siblings().removeClass('centerImg');
-		$('img').parent().removeClass('img-transform');
-		$('img').parent().find('p').hide(2000);
 	},
 	componentDidMount: function() {
 		let stageDom = React.findDOMNode(this.refs.stage),
@@ -202,7 +204,8 @@ var imgSrc = imageDatas.map(function(v, i){
 				pos: {
 					left: 0,
 					top: 0
-				}
+				},
+				isCenter: false
 			};
 		}
 		navLi.push(<li onClick={(this.rearrange).bind(this, i)}></li>);

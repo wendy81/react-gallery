@@ -6,6 +6,7 @@
  */
 'use strict';
 var webpack = require('webpack');
+var postCss = require('./postcss.config.js');
 
 module.exports = {
 
@@ -47,10 +48,10 @@ module.exports = {
       loader: 'react-hot!babel-loader'
     }, {
       test: /\.scss/,
-      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded'
+      loader: 'style-loader!css-loader!postCss!sass-loader?outputStyle=expanded'
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}'
+      loader: 'style-loader!css-loader!postCss'
     },{
       test: /\.json/,
       loader: 'json-loader'

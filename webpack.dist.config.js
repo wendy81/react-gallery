@@ -1,12 +1,13 @@
 /*
  * Webpack distribution configuration
  *
- * This file is set up for serving the distribution version. It will be compiled to dist/ by default
+ * This file is set up for serving the distribution version. It will be compiled to docs/ by default
  */
 
 'use strict';
 
 var webpack = require('webpack');
+var postCss = require('./postcss.config.js');
 
 module.exports = {
 
@@ -54,13 +55,14 @@ module.exports = {
       loader: 'babel-loader'
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}'
+      loader: 'style-loader!css-loader!postCss'
     },{
       test: /\.json/,
       loader: 'json-loader'
     }, {
       test: /\.scss/,
-      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded'
+      loader: 'style-loader!css-loader!postCss!sass-loader?outputStyle=expanded'
+      //loader后面的loader插件
     }, {
       test: /\.(png|jpg|jpeg|woff|woff2)$/,
       loader: 'url-loader?limit=14000'
