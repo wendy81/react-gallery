@@ -33,9 +33,7 @@ var ImgTag = React.createClass({
 		if(this.props.arrange.pos) {
 			styleObj = this.props.arrange.pos;
 		}
-
 		// let arrangeArr = this.props;
-
 		// if(arrangeArr.arrange.isCenter) {
 		// 	console.log(arrangeArr.title);
 		// }
@@ -101,14 +99,13 @@ Constant: {
 		let topImgSpliceIndex = 0;  //上侧图片是用
 
 		//中间图片的位置信息,把imgArrangeArr中的图片删除做为中间图片使用
-		console.log(centerIndex);
 		let imgArrangeCenterArr = imgArrangeArr.splice(centerIndex, 1);
 		imgArrangeCenterArr[0] = {
 			pos: centerPos,
 			isCenter: true
 		};
 		// if(imgArrangeArr[centerIndex].isCenter) {
-			console.log(imgArrangeCenterArr[0]);
+		// console.log(imgArrangeCenterArr[0]);
 		// }
 
 		//上侧图片,把imgArrangeArr中的图片删除做为上侧图片使用
@@ -158,6 +155,7 @@ Constant: {
 		//Li点击传入中间图index,给当前li增加class='active'
 		let curLi = React.findDOMNode(this.refs.refUl);
 		$(curLi).find('li').eq(centerIndex).addClass('active').siblings().removeClass('active');
+		$('.img-figure').eq(centerIndex).siblings().removeClass('img-transform');
 	},
 	componentDidMount: function() {
 		let stageDom = React.findDOMNode(this.refs.stage),
